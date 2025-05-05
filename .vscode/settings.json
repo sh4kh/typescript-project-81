@@ -1,0 +1,18 @@
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "eslint.validate": [
+      "javascript",
+      "typescript",
+    ],
+    "eslint.workingDirectories": [
+      { "mode": "auto" } // Автоматически определяет корень проекта в WSL
+    ],
+    "[typescript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    }
+  }
