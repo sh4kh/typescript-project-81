@@ -28,6 +28,7 @@ export default [
     rules: {
       "@stylistic/quotes": ["error", "double"],
       "@stylistic/semi": ["error", "always"],
+      "@stylistic/indent": ['error', 4],
     },
   },
 ] // satisfies Linter.Config[]
