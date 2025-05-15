@@ -6,16 +6,16 @@ export default class Tag {
 
     constructor(private tagName: string, private attributes: Record<string, string> = {}, private content = "") {}
 
-    private isSelfClosing(): boolean {
+    get isSelfClosing(): boolean {
         return Tag.SELF_CLOSING_TAGS.includes(this.tagName);
     }
 
     toString(): string {
         const attrs = Object.entries(this.attributes)
             .map(([key, value]) => ` ${key}="${value}"`)
-            .join(" ");
+            .join("");
 
-        if (this.isSelfClosing()) {
+        if (this.isSelfClosing) {
             return `<${this.tagName}${attrs}>`;
         }
 
