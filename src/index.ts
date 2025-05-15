@@ -1,18 +1,13 @@
 import Tag from "./tag";
 
-console.log(new Tag("br").toString());
+export default class FormGenerator {
+    static formFor(template: Record<string, string>, urlObj: { url?: string }, callback: (f: unknown) => void): string {
+        console.log(template);
+        console.log(urlObj);
+        callback("form");
 
-console.log(new Tag("img", { src: "path/to/image" }).toString());
-// <img src="path/to/image">
+        const { url } = urlObj;
 
-console.log(new Tag("input", { type: "submit", value: "Save" }).toString());
-// <input type="submit" value="Save">
-
-console.log(new Tag("label", {}, "Email").toString());
-// <label>Email</label>
-
-console.log(new Tag("label", { for: "email" }, "Email").toString());
-// <label for="email">Email</label>
-
-console.log(new Tag("div").toString());
-// <div></div>
+        return new Tag("form", { action: url ?? "#", method: "post" }).toString();
+    }
+}
