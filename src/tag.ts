@@ -4,7 +4,7 @@ export default class Tag {
         "base", "col", "embed", "param", "source", "track", "wbr",
     ];
 
-    constructor(private tagName: string, private attributes: Record<string, string> = {}, private content = "") {}
+    constructor(private tagName: string, private attributes: Record<string, string | number> = {}, private content = "") {}
 
     get isSelfClosing(): boolean {
         return Tag.SELF_CLOSING_TAGS.includes(this.tagName);

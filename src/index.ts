@@ -1,13 +1,27 @@
+import Builder from "./builder";
 import Tag from "./tag";
 
+interface FormAttrs {
+    action?: string
+    method?: "post" | "put"
+}
+
+interface FormBuilder {
+    input: (name: string, opts?: Record<string, string>) => void
+}
+
 export default class FormGenerator {
-    static formFor(template: Record<string, string>, urlObj: { url?: string }, callback: (f: unknown) => void): string {
-        console.log(template);
-        console.log(urlObj);
-        callback("form");
+    static formFor(template: Record<string, string>, attrs: FormAttrs = {}, builder: (f: FormBuilder) => void): string {
+        const { action = "#", method = "post" } = attrs;
 
-        const { url } = urlObj;
+        const formBuilder = new Builder(template);
 
-        return new Tag("form", { action: url ?? "#", method: "post" }).toString();
+        builder(formBuilder);
+
+        const fields = formBuilder.getFields();
+
+        const fieldsHtml = fields.length > 0 ? "\n" + fields.join("\n") + "\n" : "";
+
+        return new Tag("form", { action, method }, fieldsHtml).toString();
     }
 }
